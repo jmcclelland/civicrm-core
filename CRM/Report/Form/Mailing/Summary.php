@@ -436,6 +436,70 @@ class CRM_Report_Form_Mailing_Summary extends CRM_Report_Form {
     $this->_orderBy = " ORDER BY {$this->_aliases['civicrm_mailing_job']}.end_date DESC ";
   }
 
+  function statistics(&$rows) {
+    // The field_name => label array of all fields that we should calculate statistics for.
+    $stat_fields = array(
+      'civicrm_mailing_event_queue_queue_count' => 
+        $this->_columns['civicrm_mailing_event_queue']['fields']['queue_count']['title'],
+      'civicrm_mailing_event_delivered_delivered_count' =>
+        $this->_columns['civicrm_mailing_event_delivered']['fields']['delivered_count']['title'],
+      'civicrm_mailing_event_delivered_accepted_rate' =>
+        $this->_columns['civicrm_mailing_event_delivered']['fields']['accepted_rate']['title'],
+      'civicrm_mailing_event_bounce_bounce_count' =>
+        $this->_columns['civicrm_mailing_event_bounce']['fields']['bounce_count']['title'],
+      'civicrm_mailing_event_bounce_bounce_rate' =>
+        $this->_columns['civicrm_mailing_event_bounce']['fields']['bounce_rate']['title'],
+      'civicrm_mailing_event_opened_open_count' =>
+        $this->_columns['civicrm_mailing_event_opened']['fields']['open_count']['title'],
+      'civicrm_mailing_event_opened_open_rate' =>
+        $this->_columns['civicrm_mailing_event_opened']['fields']['open_rate']['title'],
+      'civicrm_mailing_event_trackable_url_open_click_count' =>
+        $this->_columns['civicrm_mailing_event_trackable_url_open']['fields']['click_count']['title'],
+      'civicrm_mailing_event_trackable_url_open_CTR' =>
+        $this->_columns['civicrm_mailing_event_trackable_url_open']['fields']['CTR']['title'],
+      'civicrm_mailing_event_trackable_url_open_CTO' =>
+        $this->_columns['civicrm_mailing_event_trackable_url_open']['fields']['CTO']['title'],
+      'civicrm_mailing_event_unsubscribe_unsubscribe_count' =>
+        $this->_columns['civicrm_mailing_event_unsubscribe']['fields']['unsubscribe_count']['title'],
+    );
+    $stat_values = array();
+    reset($rows);
+    while(list(,$row) = each($rows)) {
+      while(list($field) = each($row)) {
+        if(array_key_exists($field, $stat_fields)) {
+          $stat_values[$field][] = str_replace('%', '', $row[$field]);
+        }
+      }
+      reset($row);
+    }
+    reset($rows);
+    $statistics = parent::statistics($rows);
+    while(list($field, $values) = each($stat_values)) {
+      if(count($values) > 0) {
+        if(strpos($values[0], '.')) {
+          // If there is a period, it's a percentage - so we only care about the
+          // average, not the total and we want a percent sign.
+          $statistics['counts'][$field . '-average'] = array(
+            'title' => $stat_fields[$field] . ' ' . ts("(Average)"), 
+            'value' => number_format(array_sum($values) / count($values), 0) . '%', 
+            'type' => CRM_Utils_Type::T_STRING,
+          );
+        }
+        else {
+          // Show both total and average
+          $statistics['counts'][$field . '-total'] = array(
+            'title' => $stat_fields[$field] . ' ' . ts("(Total)"), 
+            'value' => array_sum($values), 
+          );
+          $statistics['counts'][$field . '-average'] = array(
+            'title' => $stat_fields[$field] . ' ' . ts("(Average)"), 
+            'value' => number_format(array_sum($values) / count($values), 0), 
+          );
+        }
+      }
+    }
+    return $statistics;
+  }
   function postProcess() {
 
     $this->beginPostProcess();
