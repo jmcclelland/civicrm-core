@@ -494,6 +494,7 @@ class CRM_Report_Form_Mailing_Summary extends CRM_Report_Form {
           $statistics['counts'][$field . '-average'] = array(
             'title' => $stat_fields[$field] . ' ' . ts("(Average)"), 
             'value' => number_format(array_sum($values) / count($values), 0), 
+            'type' => CRM_Utils_Type::T_STRING,
           );
         }
       }
