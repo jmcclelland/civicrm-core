@@ -15,16 +15,12 @@
 
   <div class="crm-footer" id="civicrm-footer">
     {crmVersion assign=version}
-    {ts}Powered by CiviCRM{/ts} <a href="https://download.civicrm.org/about/{$version}">{$version}</a>.
-    {if !empty($footer_status_severity)}
-      <span class="status{if $footer_status_severity gt 3} crm-error{elseif $footer_status_severity gt 2} crm-warning{else} crm-ok{/if}">
-      <a href="{crmURL p='civicrm/a/#/status'}">{$footer_status_message}</a>
-    </span>
-    {/if}
+    {ts}Powered by the Progressive Technology Project &amp; built on CiviCRM{/ts} <a href="https://github.com/civicrm/civicrm-core/blob/{$version}/release-notes/{$version}.md">{$version}</a>.
     {ts 1='http://www.gnu.org/licenses/agpl-3.0.html'}CiviCRM is openly available under the <a href='%1'>GNU AGPL License</a>.{/ts}<br/>
-    <a href="https://civicrm.org/download">{ts}Download CiviCRM.{/ts}</a> &nbsp; &nbsp;
-    <a href="https://lab.civicrm.org/groups/dev/-/issues">{ts}View issues and report bugs.{/ts}</a> &nbsp; &nbsp;
-    {docURL page="" text="Online documentation."}
-  </div>
+    <a href="mailto:support@progressivetech.org">{ts}Contact support{/ts}</a> &nbsp; &nbsp;
+    <a href="https://www.youtube.com/playlist?list=PLE5F8CFD9F95DD6D0&amp;feature=plcp">{ts}See video tutorials{/ts}</a> &nbsp; &nbsp;
+    View online documentation from <a href="https://docs.civicrm.org/">{ts}CiviCRM{/ts}</a> and <a href="https://network.progressivetech.org/">PTP</a> &nbsp; &nbsp;
+    <a href="https://ptp.ourpowerbase.net/GetPowerBase">{ts}Get PowerBase{/ts}</a> &nbsp; &nbsp;
+  </div> 
   {include file="CRM/common/notifications.tpl"}
 {/if}
