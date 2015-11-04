@@ -26,7 +26,11 @@
       {/crmPermission}
     {/if}
     {crmVersion assign=version}
-    {ts 1='href="http://www.gnu.org/licenses/agpl-3.0.html" rel="external" target="_blank"' 2='href="https://civicrm.org/" rel="external" target="_blank"' 3=$version}Powered by <a %2>CiviCRM</a> %3, free and open source <a %1>AGPLv3</a> software.{/ts}<br/>
+    {ts 1='href="http://www.gnu.org/licenses/agpl-3.0.html" rel="external" target="_blank"' 2='href="https://civicrm.org/" rel="external" target="_blank"' 3=$version}Powered by the Progressive Technology Project &amp; built on <a %2>CiviCRM</a> %3, free and open source <a %1>AGPLv3</a> software.{/ts}<br/>
+    <a href="mailto:support@progressivetech.org">{ts}Contact support{/ts}</a> &nbsp; &nbsp;
+    <a href="https://www.youtube.com/playlist?list=PLE5F8CFD9F95DD6D0&amp;feature=plcp">{ts}See video tutorials{/ts}</a> &nbsp; &nbsp;
+    View online documentation from <a href="https://docs.civicrm.org/">{ts}CiviCRM{/ts}</a> and <a href="https://network.progressivetech.org/">PTP</a> &nbsp; &nbsp;
+    <a href="https://ptp.ourpowerbase.net/GetPowerBase">{ts}Get PowerBase{/ts}</a> &nbsp; &nbsp; 
   </div>
   {include file="CRM/common/notifications.tpl"}
 {/crmPermission}
