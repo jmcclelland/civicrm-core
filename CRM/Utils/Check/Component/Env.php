@@ -531,7 +531,7 @@ class CRM_Utils_Check_Component_Env extends CRM_Utils_Check_Component {
       );
       return $messages;
     }
-    elseif (!is_writable($basedir)) {
+    elseif ($extensionSystem->getBrowser()->isEnabled() && !is_writable($basedir)) {
       $messages[] = new CRM_Utils_Check_Message(
         __FUNCTION__ . 'Writable',
         ts('Your extensions directory (%1) is read-only. If you would like to perform downloads or upgrades, then change the file permissions.',
