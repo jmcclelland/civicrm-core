@@ -351,6 +351,12 @@ SELECT count( a.id )
 
     }
 
+    // Add groups this user owns.
+    $sql = "SELECT id FROM civicrm_group WHERE created_id = %0";
+    $dao = CRM_Core_DAO::executeQuery($sql, array(0 => array($contactID, 'Integer')));
+    while ($dao->fetch()) {
+      if (!in_array($dao->id, $ids)) $ids[] = $dao->id;
+    }
     CRM_Utils_Hook::aclGroup($type, $contactID, $tableName, $allGroups, $ids);
     Civi::$statics[__CLASS__]['permissioned_groups'][$userCacheKey] = $ids;
     return $ids;
