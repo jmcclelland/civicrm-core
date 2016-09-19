@@ -168,7 +168,23 @@ return [
     'description' => ts('Sort name format for individual contact display names.'),
     'settings_pages' => ['display' => ['weight' => 720]],
   ],
-  'remote_profile_submissions' => [
+  // FIXME - should be propery added ala
+  // https://wiki.civicrm.org/confluence/display/CRMDOC/Settings+Reference#SettingsReference-AddingANewSettingtoCiviCRMCore
+  // At this point it is only added to get this feature to work without undefined index
+  // errors (see https://issues.civicrm.org/jira/browse/CRM-13307).
+  'additional_fonts' => [ 
+    'group_name' => 'CiviCRM Preferences',
+    'group' => 'core',
+    'name' => 'additional_fonts',
+    'type' => 'Array',
+    'add' => '4.7',
+    'title' => 'Additional Fonts',
+    'is_domain' => 1,
+    'is_contact' => 0,
+    'description' => NULL,
+    'help_text' => NULL,
+  ],
+  'remote_profile_submissions' => [ 
     'group_name' => 'CiviCRM Preferences',
     'group' => 'core',
     'name' => 'remote_profile_submissions',
