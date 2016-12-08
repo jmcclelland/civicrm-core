@@ -455,6 +455,8 @@ class CRM_Utils_Check_Component_Env extends CRM_Utils_Check_Component {
    */
   public function checkVersion($force = FALSE) {
     $messages = [];
+    // Disabled because securityAlert setting doesn't seem to work.
+    return $messages;
     try {
       $vc = new CRM_Utils_VersionCheck();
       $vc->initialize($force);
