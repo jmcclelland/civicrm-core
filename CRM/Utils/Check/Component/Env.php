@@ -413,7 +413,13 @@ class CRM_Utils_Check_Component_Env extends CRM_Utils_Check_Component {
       'customFileUploadDir' => ts('Custom Files Directory'),
     ];
 
+    $ext_repo_url = Civi::settings()->get('ext_repo_url');
     foreach ($directories as $directory => $label) {
+      // Don't check extensions directory if we don't have an external
+      // extensions repo set.
+      if ($ext_repo_url === FALSE && $directory == 'extensionsDir') {
+        continue;
+      }
       $file = CRM_Utils_File::createFakeFile($config->$directory);
 
       if ($file === FALSE) {
