@@ -144,6 +144,7 @@ class CRM_Utils_Geocode_Google {
     $query = 'https://' . self::$_server . self::$_uri . $add;
 
     $client = new GuzzleHttp\Client();
+    \Civi::log()->debug("Sending geo code query to google: $query");
     $request = $client->request('GET', $query, ['timeout' => \Civi::settings()->get('http_timeout')]);
     $string = $request->getBody();
 
