@@ -28,6 +28,7 @@ class CRM_Report_Form_Grant_Detail extends CRM_Report_Form {
    * Class constructor.
    */
   public function __construct() {
+    $this->_groupFilter = TRUE;
     $contactCols = $this->getColumns('Contact', [
       'order_bys_defaults' => ['sort_name' => 'ASC '],
       'fields_defaults' => ['sort_name'],
