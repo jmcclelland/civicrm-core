@@ -286,6 +286,7 @@
         "Allow single quotes to be used in return path": "https://github.com/zetacomponents/Mail/pull/86.patch"
       }
     },
+    "compile-includes": ["ext/greenwich/composer.compile.json"],
     "compile-whitelist": ["civicrm/composer-compile-lib"]
   }
 }
