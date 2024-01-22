@@ -36,7 +36,8 @@ class CRM_Contact_Page_DashBoard extends CRM_Core_Page {
       $this->assign('hookContentPlacement', $contentPlacement);
     }
 
-    $this->assign('communityMessages', $this->getCommunityMessageOutput());
+    // Turn off Community Messages for Powerbase sites to avoid confusion.
+    $this->assign('communityMessages', '');
 
     $loader = Civi::service('angularjs.loader');
     $loader->addModules('crmDashboard');
