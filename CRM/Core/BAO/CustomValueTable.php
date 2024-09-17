@@ -606,7 +606,7 @@ AND    $cond
           $fieldValue['value'] = CRM_Utils_Array::implodePadded($fieldValue['value']);
         }
         // Format null values correctly
-        if ($fieldValue['value'] === NULL || $fieldValue['value'] === '') {
+        if ($fieldValue['value'] === NULL || $fieldValue['value'] === '' || $fieldValue['value'] === 'null') {
           switch ($dataType) {
             case 'String':
             case 'Int':
