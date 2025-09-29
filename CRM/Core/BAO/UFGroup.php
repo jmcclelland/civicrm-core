@@ -1904,7 +1904,7 @@ AND    ( entity_id IS NULL OR entity_id <= 0 )
         $profileType = $gId ? CRM_Core_BAO_UFField::getProfileType($gId) : NULL;
         if ($profileType == 'Contact') {
           if ($contactId) {
-            $profileType = \Civi\Api4\Contact::get()
+            $profileType = \Civi\Api4\Contact::get(FALSE)
               ->addWhere('id', '=', $contactId)
               ->addSelect('contact_type')
               ->execute()->first()['contact_type'];
