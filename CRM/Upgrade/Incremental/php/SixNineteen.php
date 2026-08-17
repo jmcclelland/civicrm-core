@@ -68,6 +68,14 @@ class CRM_Upgrade_Incremental_php_SixNineteen extends CRM_Upgrade_Incremental_Ba
       'description' => ts('Friendly Name.'),
       'add' => '1.1',
     ]);
+    $this->addTask('Change case start date from date to datetime', 'alterSchemaField', 'Case', 'start_date', [
+      'title' => ts('Case Start Date'),
+      'sql_type' => 'datetime',
+      'input_type' => 'Select Date',
+      'description' => ts('Date on which given case starts.'),
+      'add' => '1.8',
+    ]);
+
     $this->addTask('Decode Mailing.template_options HTML entities', 'decodeMailingTemplateOptions');
   }
 
